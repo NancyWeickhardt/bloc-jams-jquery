@@ -24,6 +24,7 @@
     const currentSongIndex = album.songs.indexOf(player.currentlyPlaying)
     const prevSongIndex = currentSongIndex - 1; 
     const prevSong = album.songs[prevSongIndex]; 
+    if (prevSongIndex < 0) { return; }
     player.playPause(prevSong); 
   });
 
@@ -36,8 +37,7 @@
     const currentTime = player.getTime();
     const duration = player.getDuration();
     const percent = (currentTime / duration) * 100;
-    $('#time-control input').val(percent);
-    $('#time-control .current-time').text(player.prettyTime(currentTime));
+    $('#time-control .current-time').text(currentTime);
     $('#time-control input').val(percent); 
     $('#time-control .total-time').text(duration);
     }, 1000);
